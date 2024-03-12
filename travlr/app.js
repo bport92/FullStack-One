@@ -6,11 +6,13 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var travelrouter = require('./app_server/routes/travel')
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+// register handlebars partials (https://www.npmjs.com/packages/hbs)
+hbs.registerPartials(path.join(_dirname, 'app_server','views/partials'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -19,8 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.arguments('/', indexRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/travel', travelrouter);
 
 
 
