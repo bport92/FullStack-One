@@ -10,19 +10,14 @@ var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel'); // Correct variable name for travelRouter
 
 var app = express();
-
 // view engine setup
-<<<<<<< HEAD
-app.set('views', path.join(__dirname, 'views'));
-// register handlebars partials (https://www.npmjs.com/packages/hbs)
-hbs.registerPartials(path.join(_dirname, 'app_server','views/partials'));
-=======
-app.set('views', path.join(__dirname, 'app_server', 'views'));
-// register Handlebars partials
-hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // Correct path to partials directory
->>>>>>> f441c3e (fixed handlebars)
-app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, "app_server", 'views'));
 
+// register handlebars partials
+hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials'))
+
+app.set('view engine', 'hbs');
+// view engine setup
 
 app.use(logger('dev'));
 app.use(express.json());
