@@ -1,8 +1,12 @@
-var express = require('express');
-var router = express.Router();
-const controller = require('../controllers/travel');
+var fs = require('fs');
+var trips = JSON.parse(fs.readFileSync('.data/trips.json','utf8'));
 
-/* GET homepage. */
-router.get('/', controller.travel);
+/* GET travel view. */
+const travel = (req, res) => {
+    res.render ('travel', { title: 'Travlr Getaways' , trips});
 
-module.exports = router;
+};
+
+module.exports = {
+    travel
+};
