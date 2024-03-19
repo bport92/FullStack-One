@@ -18,22 +18,12 @@
                             <ul id="sites">
             {{#each trips}}
                                 <li>
-                                    <a href=“travel.html"><img src="images/reef1.jpg" alt="Img"></a>
-                                    <h2><a href=“travel.html">Gale Reef</a></h2>
+                                    <a href=“/travel"><img src="images/{{this.image}}" alt="Img"></a>
+                                    <h2><a href=“/travel">{{this.name}}</a></h2>
                                     {{{this.description}}}
                                     
                                 </li>
-                                <li>
-                                    <a href=“travel.html"><img src="images/reef2.jpg" alt="Img"></a>
-                                    <h2><a href=“/travel">Dawson’s Reef</a></h2>
-                                    {{{this.description}}}
-                                </li>
-                                <li>
-                                    <a href=“travel.html"><img src="images/reef3.jpg" alt="Img"></a>
-                                    <h2><a href=“travel.html">Claire’s Reef</a></h2>
-                                    {{{this.description}}}
-                                </li>
-        {{/each}}
+            {{/each}}
                             </ul>
                         </div>
                     </div>
