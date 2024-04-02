@@ -19,8 +19,8 @@ const travel = async function(req, res, next) {
         let message = null;
         if(!(json instanceof Array)){
             message = 'API looup error';
-            json[]
-        }else{
+            json = [];
+        } else {
             if(!json.length){
                 message = 'No trips exist in our database!';
             }

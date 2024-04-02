@@ -8,7 +8,7 @@ var hbs = require('hbs'); // Correct import for Handlebars
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel'); // Correct variable name for travelRouter
-var apiRouter = require('./app_api/route/index');
+var apiRouter = require('./app_api/routes/index');
 
 // Bring in the Database
 require('./app_api/models/db');
