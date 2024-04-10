@@ -25,7 +25,7 @@ const travel = async function(req, res, next) {
                 message = 'No trips exist in our database!';
             }
         }
-        res.render('travle', {title: 'Travel Getaways', trips: json});
+        res.render('travel', {title: 'Travel Getaways', trips: json});
     })
     .catch(err => res.status(500).send(e.message));
     //console.log('TRAVEL CONTROLLER AFTER RENDER');
