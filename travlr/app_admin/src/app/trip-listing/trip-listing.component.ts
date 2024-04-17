@@ -1,49 +1,57 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { TripCardComponent } from "../trip-card/trip-card.component";
-import { TripDataService } from "../services/trip-data.service";
-import { Trip } from "../models/trip";
-import { CommonModule } from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TripCardComponent } from '../trip-card/trip-card.component';
+
+import { TripDataService } from '../services/trip-data.service';
+import { Trip } from '../models/trip';
+
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-trip-listing",
-  templateUrl: "./trip-listing.component.html",
-  standalone: true,
-  imports: [CommonModule, TripCardComponent],
-  styleUrls: ['./trip-listing.component.css'],
-  providers: [TripDataService], // Moved providers array outside of @Component decorator
+    selector: 'app-trip-listing',
+    standalone: true,
+    imports: [CommonModule, TripCardComponent],
+    templateUrl: './trip-listing.component.html',
+    styleUrls: ['./trip-listing.component.css'],
+    providers: [TripDataService]
 })
 export class TripListingComponent implements OnInit {
-  trips!: Trip[];
-  message: string = '';
+    trips!: Trip[];
+    message: string = '';
 
-  constructor(
+constructor(
     private tripDataService: TripDataService,
     private router: Router
-  ) {
+    ) {
     console.log('trip-listing constructor');
-  }
+}
 
-  addTrip(): void {
-    this.router.navigate(["add-trip"]);
-  }
+public addTrip(): void{
+    this.router.navigate(['add-trip']);
 
-  private getTrips(): void {
-    console.log("Inside TripListingComponent#getTrips");
-    this.message = "Searching for trips";
-    this.tripDataService.getTrips().subscribe({
-      next: (foundTrips) => {
-        this.message = foundTrips.length > 0 ? "" : "No trips found";
-        this.trips = foundTrips;
-      },
-      error: (error) => {
-        console.error("Error fetching trips: ", error);
-        this.message = "Error fetching trips";
-      }
-    });
-  }
+}
 
-  ngOnInit(): void {
-    this.getTrips();
-  }
+
+private getStuff(): void {
+    this.tripDataService.getTrip()
+        .subscribe({
+            next: (value: Trip[]) => {
+                this.trips = value;
+                if (value.length > 0) {
+                    this.message = 'There are ' + value.length + ' trips available.';
+                } else {
+                    this.message = 'There were no trips retrieved from the database';
+                }
+                console.log(this.message);
+            },
+            error: (error: any) => {
+                console.log('Error: ' + error);
+            }
+});
+}
+
+ngOnInit(): void {
+    console.log('ngOnInit');
+    this.getStuff();
+}
 }

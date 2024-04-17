@@ -1,18 +1,19 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express'); //Express app
+const router = express.Router(); // Router logic
 
-const tripsController = require("../controllers/trips");
+// This is where we import the controllers we wil route
+const tripsController = require('../controllers/trips');
 
+// define route for our trips endpoint
 router
-  .route("/trips")
-  .get(tripsController.tripsList)
-  .post(tripsController.tripsAddTrip);
-
+    .route('/trips')
+    .get(tripsController.tripsList) // GET Method routes tripList
+    .post(tripsController.tripsAddTrip);
+    
+//GET Method routes tripsFindByCode - requires parameters
 router
-  .route("/trips/:tripCode")
-  .get(tripsController.tripsList)
-  .put(tripsController.tripsUpdateTrip);
+    .route('/trips/:tripCode')
+    .get(tripsController.tripsFindByCode) // GET Method routes tripList    
+    .put(tripsController.tripsUpdateTrip);
 
-router.route("/trips/:tripCode").get(tripsController.tripsFindCode);
-
-module.exports = router;
+    module.exports = router;
