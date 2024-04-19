@@ -1,9 +1,10 @@
-const express = require('express'); //Express app
-const router = express.Router(); // Router logic
-const jwt = require('express-jwt');
+const express = require('express');
+const router = express.Router();
+const { expressjwt: jwt } = require("express-jwt");
 const auth = jwt({
     secret: process.env.JWT_SECRET,
-    userProperty: 'payload'
+    userProperty: 'payload',
+    algorithms: ["HS256"],
 });
 
 // This is where we import the controllers we wil route
