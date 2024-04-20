@@ -4,27 +4,26 @@ import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../models/user';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, NavbarComponent],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   public formError: string = '';
   public credentials = {
     name: '',
     email: '',
-    password: '',
+    password: ''
   };
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
-  ) {}
-  ngOnInit() {}
+  ) { }
+  ngOnInit() { }
   public onLoginSubmit(): void {
     this.formError = '';
     if (!this.credentials.email || !this.credentials.password) {
@@ -34,9 +33,8 @@ export class LoginComponent implements OnInit {
     }
   }
   private doLogin(): void {
-    this.authenticationService
-      .login(this.credentials)
+    this.authenticationService.login(this.credentials)
       .then(() => this.router.navigateByUrl('list-trips'))
-      .catch((message) => (this.formError = message));
+      .catch((message) => this.formError = message);
   }
 }

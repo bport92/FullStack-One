@@ -8,15 +8,17 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authenticationService: AuthenticationService) {}
-  ngOnInit() {}
+  constructor(
+    private authenticationService: AuthenticationService
+  ) { }
+  ngOnInit() { }
   public isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
   }
-  protected onLogout(): void {
+  public onLogout(): void {
     return this.authenticationService.logout();
   }
 }
