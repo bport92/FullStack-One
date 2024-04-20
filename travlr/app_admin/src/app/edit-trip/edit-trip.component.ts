@@ -48,7 +48,7 @@ import { Trip } from '../models/trip';
         image: ['', Validators.required],
         description: ['', Validators.required]
       });
-      this.tripDataService.getTrip()
+      this.tripDataService.getTrip(tripCode)
 .subscribe({
 next: (value: any) => {
 this.trip = value;
